@@ -18,7 +18,7 @@ function print(month){
                     case 5:
                         console.log(`May`);
                         break;
-                        case 5:
+                        case 6:
                             console.log(`June`);
                             break;
                             case 7:
