@@ -18,4 +18,4 @@ function age(input) {
   
 
 
-age(20);
+age(3);
