@@ -1,8 +1,8 @@
-function solve(info, num1, num2){
+function solve(info, startIndex, count){
 
   
 
-    let result=info.substring(num1, num1+num2);
+    let result=info.substring(startIndex, startIndex+count);
     console.log(result);
 
 }
