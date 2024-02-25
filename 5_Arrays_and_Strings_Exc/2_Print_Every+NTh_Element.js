@@ -1,8 +1,9 @@
 function solve(arr, step) {
     for (let i = 0; i < arr.length; i += step) {
         let elem=(arr[i]);
-        console.log(elem);
+ console.log(elem);
     }
+  
 }
 
 
