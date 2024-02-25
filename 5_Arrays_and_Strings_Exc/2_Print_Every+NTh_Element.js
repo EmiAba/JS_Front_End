@@ -1,4 +1,4 @@
-function solve(...arr, step) {
+function solve(arr, step) {
     for (let i = 0; i < arr.length; i += step) {
         let elem=(arr[i]);
         console.log(elem);
@@ -6,4 +6,9 @@ function solve(...arr, step) {
 }
 
 
-solve(['5', '20', '31', '4', '20'], 2)
+solve(['dsa',
+'asd', 
+'test', 
+'tset'], 
+2
+)
