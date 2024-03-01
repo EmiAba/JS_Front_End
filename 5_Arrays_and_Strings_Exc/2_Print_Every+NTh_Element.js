@@ -1,8 +1,10 @@
-function solve(arr, step) {
-    for (let i = 0; i < arr.length; i += step) {
-        let elem=(arr[i]);
- console.log(elem);
+function solve(array, step) {
+    let result=[];
+    for (let i = 0; i < array.length; i += step) {
+        result.push(array[i])
+           
     }
+  return result;
   
 }
 
