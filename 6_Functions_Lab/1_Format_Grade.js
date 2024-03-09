@@ -1,8 +1,9 @@
+function solve(grade) { 
 
-
-function solve(grade) { // Ensure 'solve' accepts a grade argument
     let description = printGradeWithDescription(grade); // Pass the grade to the function
     console.log(description); // Print the returned description
+
+    
     function printGradeWithDescription(grade) {
         let description;
         if (grade < 3.00) {
