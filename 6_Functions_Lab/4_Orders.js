@@ -12,7 +12,7 @@ function solve(meal, amount) {
         return (result = amount * 1);
       case "coke":
         return (result = amount * 1.4);
-      case "snaks":
+      case "snacks":
         return (result = amount * 2);
     }
     return result;
