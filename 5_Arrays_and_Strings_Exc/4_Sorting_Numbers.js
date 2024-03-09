@@ -4,9 +4,13 @@ function solve(numbers) {
   result=[];
   while(sortedNumbers.length>0){
     let firstNumber=sortedNumbers.shift();
-       let lastNumbers=sortedNumbers.pop();
+       let lastNumber=sortedNumbers.pop();
 
-    result.push(firstNumber, lastNumbers);
+    result.push(firstNumber);
+    //the edge case uneven array
+    if(lastNumber){
+        result.push(lastNumber);
+    }
 
   }
 
