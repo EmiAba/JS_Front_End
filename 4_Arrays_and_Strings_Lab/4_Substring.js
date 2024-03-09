@@ -1,6 +1,5 @@
 function solve(info, startIndex, count){
 
-  
 
     let result=info.substring(startIndex, startIndex+count);
     console.log(result);
