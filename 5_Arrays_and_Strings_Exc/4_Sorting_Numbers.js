@@ -1,18 +1,19 @@
-function solve(arr) {
-    // Step 1: Sort the array in ascending order
-    arr.sort((a, b) => a - b);
+function solve(numbers) {
     
-    let start = 0; // Start pointer
-    let end = arr.length - 1; // End pointer
+  const sortedNumbers= numbers.sort((a,b)=>a-b);
+  result=[];
+  while(sortedNumbers.length>0){
+    let firstNumber=sortedNumbers.shift();
+       let lastNumbers=sortedNumbers.pop();
+
+    result.push(firstNumber, lastNumbers);
+
+  }
+
+  return result;
     
-    // Alternate between largest and smallest, starting with the largest
-    while (start <= end) {
-        if (start !== end) {
-            console.log(arr[start++]); //Print the smallest (next) element
-        }
-        console.log(arr[end--]); // 
-    }
+    
 }
-  solve([1, 65, 3, 52, 48, 63, 31, -3, 18, 56])
+ console.log(solve([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]))
 
   
