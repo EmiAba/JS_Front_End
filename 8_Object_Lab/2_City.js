@@ -1,12 +1,7 @@
-function solve(name, area, population, country, postcode){
-    let city={
-        name: name, 
-        area: area, 
-        population:population, 
-        country:country, 
-        postcode:postcode
+function solve(city){
+   
+        for (let key in city) {
+            console.log(`${key} -> ${city[key]}`);
+        }
     }
 
-    console.log(`name -> ${city.name}`);
-
-}
