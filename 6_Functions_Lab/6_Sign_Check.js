@@ -14,8 +14,4 @@ function checkMultiplicationSign(numOne, numTwo, numThree) {
     }
 }
 
-// Example usage
-checkMultiplicationSign(2, 3, -1); // Expected output: "Negative"
-checkMultiplicationSign(-2, -3, -1); // Expected output: "Positive"
-checkMultiplicationSign(-2, 3, 1); // Expected output: "Negative"
-checkMultiplicationSign(2, 3, 4); // Expected output: "Positive"
+
