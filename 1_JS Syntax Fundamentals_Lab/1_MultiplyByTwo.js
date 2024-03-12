@@ -7,5 +7,4 @@ console.log(`${result}`);
 
 }
 
-
 solve(2);
