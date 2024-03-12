@@ -6,4 +6,5 @@ function grade(grade){
         console.log(`Not excellent`);
     }
 }
+
 grade(5.50)
