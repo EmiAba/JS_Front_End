@@ -5,7 +5,7 @@ function solve(commands) {
         if (command.startsWith('addMovie ')) {
             const name = command.substring('addMovie '.length);
             movies.push({ name });
-        } else if (command.includes(' directedBy ')) {
+          } else if (command.includes(' directedBy ')) {
             const [name, director] = command.split(' directedBy ');
             const movie = movies.find(movie => movie.name === name);
             if (movie) movie.director = director;
