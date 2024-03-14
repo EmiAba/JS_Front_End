@@ -14,8 +14,8 @@ function solve(input){
 
        
         }
-        for (const weekDay in meetings) {
-            console.log(`${weekDay} -> ${meetings[weekDay]}`);
+        for (const weekday in meetings) {
+            console.log(`${weekday} -> ${meetings[weekday]}`);
                  
              }
     }
