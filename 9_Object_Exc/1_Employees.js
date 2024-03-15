@@ -37,14 +37,12 @@ function fancySolve(employeeNames){
 
 
 function fanciestSolve(employeeNames){
- const result=  employeeNames
-    .map(name=>{
-        const employee={
-            name,
-            personalNumber: name.length,
-        }
-        return employee;
-    })
+ employeeNames 
+    .map(name=>({ // expression body
+        name, 
+        personalNumber: name.length
+        })
+    ) //statement body
     .forEach(employee =>  console.log(`Name: ${employee.name} -- Personal Number: ${employee.personalNumber}`));
 
 }
