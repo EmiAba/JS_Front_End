@@ -36,7 +36,20 @@ function fancySolve(employeeNames){
 }
 
 
-fancySolve([
+function fanciestSolve(employeeNames){
+ const result=  employeeNames
+    .map(name=>{
+        const employee={
+            name,
+            personalNumber: name.length,
+        }
+        return employee;
+    })
+    .forEach(employee =>  console.log(`Name: ${employee.name} -- Personal Number: ${employee.personalNumber}`));
+
+}
+
+fanciestSolve([
     'Silas Butler',
     'Adnaan Buckley',
     'Juan Peterson',
