@@ -46,7 +46,28 @@ function solve(input){
 
 }
 
-solve([
+
+
+function fancySolve(input){
+    input.map(row=>{
+
+      const [name, level, items]= row.split(' / ');
+      
+      return {
+        name, 
+        level: Number(level),
+        items,
+    };
+
+    })
+    .sort((a,b)=> a.level-b.level)
+    .forEach(hero=> {  
+         console.log(`Hero: ${hero.name}`);
+    console.log(`level => ${hero.level}`);
+    console.log(`items => ${hero.items}`)});
+
+}
+fancySolve([
     'Isacc / 25 / Apple, GravityGun',
     'Derek / 12 / BarrelVest, DestructionSword',
     'Hes / 1 / Desolator, Sentinel, Antara'
