@@ -44,7 +44,8 @@ function fancySolve(stock, delivery) {
     };
 
     // Correctly concatenating stock and delivery and then processing them
-    const store = getProducts(stock.concat(delivery));
+    // const store = getProducts(stock.concat(delivery));
+    const store=getProducts([...stock, ...delivery]);
 
     Object.keys(store).forEach(product => console.log(`${product} -> ${store[product]}`));
 }
