@@ -26,11 +26,34 @@ function solve(stock, delivery) {
     }
 }
 
+function fancySolve(stock, delivery) {
+    const getProducts = (list) => {
+        const products = {};
+        // Iterate through the list parameter instead of the global stock array
+        for (let i = 0; i < list.length; i += 2) {
+            const product = list[i];
+            const quantity = Number(list[i + 1]);
+
+            if (!products[product]) {
+                products[product] = 0;
+            }
+
+            products[product] += quantity;
+        }
+        return products;
+    };
+
+    // Correctly concatenating stock and delivery and then processing them
+    // const store = getProducts(stock.concat(delivery));
+    const store=getProducts([...stock, ...delivery]);
+
+    Object.keys(store).forEach(product => console.log(`${product} -> ${store[product]}`));
+}
 
 
 
 
-solve([
+fancySolve([
     'Chips', '5', 'CocaCola', '9', 'Bananas', '14', 'Pasta', '4', 'Beer', '2'
     ],
     [
