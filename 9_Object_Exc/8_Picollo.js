@@ -18,8 +18,24 @@ function trackParkingLotOperations(operations) {
     }
 }
 
+function setSolve(input){
+    const parking=new Set();
+
+for (const row of input) {
+     const[direction, carNumber]= row.split(', ');
+     direction==='IN' 
+     ? parking.add(carNumber)
+     : parking.delete(carNumber)
+    }
+
+Array.from(parking.values())
+.sort((a,b)=> a.localeCompare(b))
+.forEach(car=>console.log(car));
+
+}
+
 // Example usage:
-trackParkingLotOperations([
+setSolve([
     'IN, CA2844AA',
     'IN, CA1234TA',
     'OUT, CA2844AA',
