@@ -27,15 +27,41 @@ for (const row of input) {
      ? parking.add(carNumber)
      : parking.delete(carNumber)
     }
-
+if(parking.size<1){
+    console.log(`Parking Lot is Empty`);
+    return;
+}
 Array.from(parking.values())
 .sort((a,b)=> a.localeCompare(b))
 .forEach(car=>console.log(car));
 
 }
 
+function solve(input){
+    const parkingLot={};
+
+    for (const row of input) {
+        const [direction, carNumber]= row.split(', ');
+
+     direction==='IN'
+            ? parkingLot[carNumber]=true
+            : delete parkingLot[carNumber]
+
+
+        
+    }
+  
+
+Object.keys(parkingLot)
+.sort((a,b)=> a.localeCompare(b))
+.forEach(carNumber=>console.log(carNumber));
+
+}
+
+
+
 // Example usage:
-setSolve([
+solve([
     'IN, CA2844AA',
     'IN, CA1234TA',
     'OUT, CA2844AA',
