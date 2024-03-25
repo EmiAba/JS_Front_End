@@ -1,12 +1,18 @@
 function addItem() {
-const itemListElement=document.getElementById('items');
-const inputElement=document.getElementById('newItemText');
+    const itemListElement = document.getElementById('items');
+    const inputElement = document.getElementById('newItemText');
 
+    //create element
 
-const newItelElement=document.createElement('li');
+    const newItemElement = document.createElement('li'); // Fixed variable name
 
-newItelElement.textContent=inputElement.value;
-itemListElement.append(newItelElement);
+    newItemElement.textContent = inputElement.value;
+
+    //append element
+    itemListElement.appendChild(newItemElement);
+
+    //clear the element
+    inputElement.value = '';
 
 
     //II solution
