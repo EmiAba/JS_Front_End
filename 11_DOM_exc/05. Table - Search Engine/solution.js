@@ -11,6 +11,7 @@ function solve() {
       const tdElements = trElement.querySelectorAll('td');
       let isSelected = false;
 
+      //clear input field-
       trElement.classList.remove('select');
       
       for (const tdElement of tdElements) {
