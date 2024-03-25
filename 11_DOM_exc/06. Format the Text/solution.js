@@ -5,7 +5,8 @@ function solve() {
 
   //convert to paragraphs
   const result = text
-    .split(".")
+    .split('.')
+    .filter(sentence=>!!sentence)
     .reduce((result, sentence, i) => {
       const resultIndex = Math.floor(i / 3);
       if (!result[resultIndex]) {
