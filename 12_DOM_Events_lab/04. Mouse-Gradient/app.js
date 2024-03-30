@@ -6,8 +6,8 @@ function attachGradientEvents() {
         gradientElement.addEventListener('mousemove', (event)=>{
                 //console.log(`event`);
 
-        const currentWidth=event.offsetX; //start
-        const elementWidth=event.target.clientWidth;
+        const currentWidth=event.offsetX; //dstance from the start
+        const elementWidth=event.target.clientWidth; //inside length of the element
 
         const progress=Math.floor((currentWidth / elementWidth)*100);
 
