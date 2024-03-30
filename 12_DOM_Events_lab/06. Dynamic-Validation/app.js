@@ -6,6 +6,8 @@ function validate() {
     //   console.log(e.target.value);
     if (!pattern.test(event.target.value)) {
       event.target.classList.add('error');
+    }else{
+        event.target.classList.remove('error');
     }
 
 
