@@ -20,7 +20,7 @@ function lockedProfile() {
                 showButtonElement.textContent = 'Show more';
             }
             
-            // additionInfoElement.style.display = additionInfoElement.style.display === 'block' 
+            // additionInformationElement.style.display = additionInformationElement.style.display === 'block' 
             //     ? 'none' 
             //     : 'block';
             // showButtonElement.textContent = showButtonElement.textContent  === 'Show more' 
