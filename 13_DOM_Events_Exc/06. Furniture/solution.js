@@ -38,6 +38,15 @@ generateButtonElement.addEventListener('click',(e) =>{
     markTdElement.appendChild(markElement);
 
     
+ const furnitureTrElement=document.createElement('tr');
+ furnitureTrElement.appendChild(imageTdElement);
+ furnitureTrElement.appendChild(nameTdElement);
+ furnitureTrElement.appendChild(priceTdElement);
+furnitureTrElement.appendChild(decTdElement);
+furnitureTrElement.appendChild(markTdElement);
+
+furnitureTbodyElement.appendChild(furnitureTrElement);
+
   }
 
 
