@@ -1,103 +1,49 @@
 window.addEventListener("load", solve);
 
-function solve(){
-    const addButtonElement = document.getElementById('add-btn');
+function solve() {
     const placeInputElement = document.getElementById('place');
     const actionInputElement = document.getElementById('action');
     const personInputElement = document.getElementById('person');
-    const taskListElement = document.getElementById('task-list');
-
-    const doneListElement=document.getElementById('done-list');
+    const addButtonElement = document.getElementById('add-btn');
     
-    // // Ensure all elements are correctly loaded
-    // if (!addButtonElement || !placeInputElement || !actionInputElement || !personInputElement || !taskListElement) {
-    //     console.error('One or more elements could not be found.');
-    //     return; // Stop further execution if any element is not found
-    // }
-
+    const taskListElement = document.getElementById('task-list');
+    const doneListElement = document.getElementById('done-list');
+    
     addButtonElement.addEventListener('click', () => {
-        const place = placeInputElement.value.trim();
-        const action = actionInputElement.value.trim();
-        const person = personInputElement.value.trim();
+        // Get input information
+        const place = placeInputElement.value;
+        const action = actionInputElement.value;
+        const person = personInputElement.value;
         
-     
+        // Add to task list
         const taskLiElement = createTaskElement(place, action, person);
         taskListElement.appendChild(taskLiElement);
-        
-        placeInputElement.value = '';
-        actionInputElement.value = '';
-        personInputElement.value = '';
-    
 
-        const editButtonElement = taskListElement.querySelector('.btn.edit');
-        const  doneButtonElement= taskListElement.querySelector('.btn.done');
-
-        editButtonElement.addEventListener('click', ()=>{
-
-            placeInputElement.value=place;
-            actionInputElement.value=action;
-            personInputElement.value=person;
-
-            taskLiElement.remove();
-
-
-
-        })
-        const deleteButtonElement=document.createElement('button');
-        deleteButtonElement.classList.add('delete','Delete');
-        deleteButtonElement.textContent='Delete';
-   
-        doneButtonElement.addEventListener('click',()=>{
-          
-
-          //remove buttons
-          const buttonsDivElement1 = taskLiElement.querySelector('.buttons');
-       
-           buttonsDivElement1.remove();
-
-                //append to tasks
-            doneListElement.appendChild(taskLiElement);
-
-                 //append delete buutton
-
-            doneListElement.appendChild(deleteButtonElement);
-
-
-
-        
-        });
-        deleteButtonElement.addEventListener('click',()=>{
-            doneListElement.remove();
-        })
-
-
-
-
-
-
+        // Clear input fields
+        clearInputs();
     });
     
     function createTaskElement(place, action, person) {
-        const pPlaceElement = document.createElement("p");
-        pPlaceElement.textContent = `Place:${place}`;
+        const placePElement = document.createElement("p");
+        placePElement.textContent = `Place: ${place}`;
         
-        const pActionElement = document.createElement("p");
-        pActionElement.textContent = `Action:${action}`;
+        const actionPElement = document.createElement("p");
+        actionPElement.textContent = `Action: ${action}`;
         
-        const pPersonElement = document.createElement("p");
-        pPersonElement.textContent = `Person:${person}`;
+        const personPElement = document.createElement("p");
+        personPElement.textContent = `Person: ${person}`; // Fixed typo here
         
         const articleElement = document.createElement("article");
-        articleElement.appendChild(pPlaceElement);
-        articleElement.appendChild(pActionElement);
-        articleElement.appendChild(pPersonElement);
+        articleElement.appendChild(placePElement);
+        articleElement.appendChild(actionPElement);
+        articleElement.appendChild(personPElement);
         
         const editButtonElement = document.createElement("button");
-        editButtonElement.classList.add('btn', 'edit');
+        editButtonElement.classList.add('edit');
         editButtonElement.textContent = "Edit";
         
         const doneButtonElement = document.createElement("button");
-        doneButtonElement.classList.add('btn',"done");
+        doneButtonElement.classList.add("done");
         doneButtonElement.textContent = "Done";
         
         const buttonsDivElement = document.createElement("div");
@@ -110,6 +56,32 @@ function solve(){
         taskLiElement.appendChild(articleElement);
         taskLiElement.appendChild(buttonsDivElement);
         
+        editButtonElement.addEventListener('click', () => {
+            placeInputElement.value = place;
+            actionInputElement.value = action;
+            personInputElement.value = person;
+            taskLiElement.remove();
+        });
+
+        doneButtonElement.addEventListener('click', () => {
+            buttonsDivElement.remove();
+            const deleteButtonElement = document.createElement('button');
+            deleteButtonElement.classList.add('delete');
+            deleteButtonElement.textContent = 'Delete';
+            taskLiElement.appendChild(deleteButtonElement);
+            doneListElement.appendChild(taskLiElement);
+
+            deleteButtonElement.addEventListener('click', () => {
+                taskLiElement.remove();
+            });
+        });
+
         return taskLiElement;
+    }
+
+    function clearInputs() {
+        placeInputElement.value = '';
+        actionInputElement.value = '';
+        personInputElement.value = '';
     }
 }
