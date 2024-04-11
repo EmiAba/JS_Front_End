@@ -115,7 +115,7 @@ describe('E2E tests', function () {
       const [calories] = await page.$$eval(`#calories`, (t) =>
         t.map((s) => s.value)
       );
-
+      
       expect(food).to.equal('');
       expect(time).to.equal('');
       expect(calories).to.equal('');
