@@ -2,30 +2,33 @@ function solve(input) {
   let message = input.shift();
 
   const takeEven = (message) => {
-    return message.split('').filter((_,i)=> i%2 ==0).join('');
-   
+    let result = message
+      .split("")
+      .filter((_, i) => i % 2 == 0)
+      .join("");
+    console.log(result);
+    return result;
   };
 
   const changeAll = (message, substring, replacement) => {
-    let result=message;
-    while(result.includes(substring)){
-        result=result.replace(substring, replacement);
+    let result = message;
+    while (result.includes(substring)) {
+      result = result.replace(substring, replacement);
     }
-   
+    console.log(result);
     return result;
   };
 
   const reverse = (message, substring) => {
-   
-    
-    if(!message.includes(substring)){
+    if (!message.includes(substring)) {
+      console.log("error");
+      return message;
+    }
+    result = message.replace(substring, "");
+    result += substring.split("").reverse().join("");
 
-    console.log('error');
-    return message;
-}
-    result=message.replace(substring,'');
-result+=substring.split('').reverse().join('');
-return result;
+    console.log(result);
+    return result;
 
     // return message;
   };
@@ -34,10 +37,10 @@ return result;
 
   while (line != "Buy") {
     const [command, substring, replacement] = line.split("?");
-    
+
     switch (command) {
       case "TakeEven":
-       message = takeEven(message);
+        message = takeEven(message);
 
         break;
       case "ChangeAll":
@@ -45,16 +48,13 @@ return result;
 
         break;
       case "Reverse":
-         message = reverse(message,substring);
+        message = reverse(message, substring);
 
         break;
     }
 
     line = input.shift();
-    console.log(message);
   }
-
-
 
   console.log(`The cryptocurrency is: ${message}`);
 }
