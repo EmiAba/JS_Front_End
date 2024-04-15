@@ -9,35 +9,34 @@ const slowMo = 500;
 const mockData = {
   list: [
     {
-      food: 'Bug 1',
-      calories: '5',
-      time: '11:35',
+      gift: 'Bug 1',
+      for: 'M',
+      price: '100',
       _id: '1001',
     },
-    {
-      food: 'Bug 2',
-      calories: '3',
-      time: '14:50',
+    { gift: 'Bug 2',
+    for: 'N',
+    price: '200',
       _id: '1002',
     },
     {
-      food: 'Bug 3',
-      calories: '4',
-      time: '23:20',
+      gift: 'Bug 3',
+      for: 'P',
+      price: '300',
       _id: '1003',
     },
     {
-      food: 'Bug 4',
-      calories: '8',
-      time: '07:00',
+      gift: 'Bug 4',
+      for: 'F',
+      price: '400',
       _id: '1004',
     },
   ],
 };
 
 const endpoints = {
-  catalog: '/jsonstore/tasks',
-  byId: (id) => `/jsonstore/tasks/${id}`,
+  catalog: '/jsonstore/gifts',
+  byId: (id) => `/jsonstore/gifts/${id}`,
 };
 
 let browser;
@@ -64,25 +63,25 @@ describe('E2E tests', function () {
     await context.close();
   });
 
-  describe('Daily Calorie Counter Tests', () => {
-    it('Load Meals', async () => {
+  describe('Christmas Gifts Tests', () => {
+    it('Load Presents', async () => {
       const data = mockData.list;
       const { get } = await handle(endpoints.catalog);
       get(data);
 
       await page.goto(host);
-      await page.waitForSelector('#load-meals');
+      await page.waitForSelector('#load-presents');
 
-      await page.click('#load-meals');
+      await page.click('#load-presents');
 
-      const list = await page.$$eval(`#meals #list .meal`, (t) =>
+      const list = await page.$$eval(`#presents #gift-list .gift-sock`, (t) =>
         t.map((s) => s.textContent)
       );
       expect(list.length).to.equal(data.length);
 
     });
 
-   it('Add Meal', async () => {
+   it('Add Gift', async () => {
       const data = mockData.list[0];
       await page.goto(host);
 
@@ -90,44 +89,44 @@ describe('E2E tests', function () {
       const { onRequest } = post();
 
       await page.waitForSelector('#form');
-      await page.fill('#food', data.food);
-      await page.fill('#time', data.time);
-      await page.fill('#calories', data.calories);
+      await page.fill('#gift', data.gift);
+      await page.fill('#for', data.for);
+      await page.fill('#price', data.price);
 
       const [request] = await Promise.all([
         onRequest(),
-        page.click('#add-meal'),
+        page.click('#add-present'),
       ]);
 
       const postData = JSON.parse(request.postData());
       
-      expect(postData.food).to.equal(data.food);
-      expect(postData.time).to.equal(data.time);
-      expect(postData.calories).to.equal(data.calories);
+      expect(postData.gift).to.equal(data.gift);
+      expect(postData.for).to.equal(data.for);
+      expect(postData.price).to.equal(data.price);
 
-      const [food] = await page.$$eval(`#food`, (t) =>
+      const [gift] = await page.$$eval(`#gift`, (t) =>
         t.map((s) => s.value)
       );
-      const [time] = await page.$$eval(`#time`, (t) =>
+      const [forGift] = await page.$$eval(`#for`, (t) =>
         t.map((s) => s.value)
       );
 
-      const [calories] = await page.$$eval(`#calories`, (t) =>
+      const [price] = await page.$$eval(`#price`, (t) =>
         t.map((s) => s.value)
       );
-      
-      expect(food).to.equal('');
-      expect(time).to.equal('');
-      expect(calories).to.equal('');
+
+      expect(gift).to.equal('');
+      expect(forGift).to.equal('');
+      expect(price).to.equal('');
     });
 
-    it('Edit Meal (Has Input)', async () => {
+    it('Edit Gift (Has Input)', async () => {
       await page.goto(host);
       const data = mockData.list[0];
 
-      await page.click('#load-meals');
-      await page.waitForSelector('#list');
-      await page.click('#list .meal .change-meal');
+      await page.click('#load-presents');
+      await page.waitForSelector('#gift-list');
+      await page.click('#gift-list .gift-sock .change-btn');
 
       const allCourse = await page.$$eval(`#form input`, (t) =>
         t.map((s) => s.value)
@@ -135,46 +134,46 @@ describe('E2E tests', function () {
 
    
 
-      expect(allCourse[0]).to.include(data.food);
-      expect(allCourse[1]).to.include(data.time);
-      expect(allCourse[2]).to.include(data.calories);
+      expect(allCourse[0]).to.include(data.gift);
+      expect(allCourse[1]).to.include(data.for);
+      expect(allCourse[2]).to.include(data.price);
 
     });
 
-    it('Edit Meal (Makes API Call)', async () => {
+    it('Edit Gift (Makes API Call)', async () => {
       const data = mockData.list[0];
       await page.goto(host);
       const { patch } = await handle(endpoints.byId(data._id));
       const { onRequest } = patch({ id: data._id });
 
-      await page.click('#load-meals');
-      await page.waitForSelector('#list');
-      await page.click('#list .meal .change-meal');
-      await page.fill('#food', data.food + 's');
+      await page.click('#load-presents');
+      await page.waitForSelector('#gift-list');
+      await page.click('#gift-list .gift-sock .change-btn');
+      await page.fill('#gift', data.gift + '2');
 
       const [request] = await Promise.all([
         onRequest(),
-        page.click('#edit-meal'),
+        page.click('#edit-present'),
       ]);
 
       const postData = JSON.parse(request.postData());
-      expect(postData.food).to.equal(data.food + 's');
+      expect(postData.gift).to.equal(data.gift + '2');
     });
 
-    it('Delete Meal', async () => {
+    it('Delete Gift', async () => {
       const data = mockData.list[0];
       await page.goto(host);
       const { del } = await handle(endpoints.byId(data._id));
       const { onResponse, isHandled } = del({ id: data._id });
 
-      await page.click('#load-meals');
+      await page.click('#load-presents');
 
-      await page.waitForSelector('#list');
+      await page.waitForSelector('#gift-list');
 
       await Promise.all([
         onResponse(),
         page.click(
-          `#list .meal .delete-meal`
+          `#gift-list .gift-sock .delete-btn`
         ),
       ]);
 
